@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:8000"; // inside Kubernetes
+const API_URL = "http://a0e72b77a635a46df8cabe892b6d65bd-477770728.us-east-1.elb.amazonaws.com:8000/"; // inside Kubernetes
 
 function App() {
   const [books, setBooks] = useState([]);
