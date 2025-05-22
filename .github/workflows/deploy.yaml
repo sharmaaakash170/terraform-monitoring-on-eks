@@ -2,7 +2,7 @@ name: App Deploy Pipeline
 
 on: 
   workflow_run:
-    workflows: [ "Terraform Infra Pipeline-in" ]
+    workflows: [ "Terraform Infra Pipeline" ]
     types:
       - completed
   workflow_dispatch:

@@ -8,7 +8,6 @@ module "vpc" {
   project_name        = var.project_name
   public_subnet_cidrs = var.public_subnet_cidrs
   vpc_cidr_block      = var.vpc_cidr_block
-  private_subnet_cidrs = var.private_subnet_cidrs
   azs                 = var.azs
 }
 

@@ -13,7 +13,3 @@ variable "vpc_cidr_block" {
 variable "azs" {
   type = list(string)
 }
-
-variable "private_subnet_cidrs" {
-  type = list(string)
-}
