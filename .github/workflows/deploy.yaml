@@ -9,10 +9,10 @@ on:
   
 env: 
   AWS_REGION: us-east-1
-  EKS_CLUSTER_NAME: terraform-eks-microservices-ci-cd-eks-cluster
-  ECR_REPO_NAME: terraform-eks-microserivce-ci-cd-ecr-repo
+  EKS_CLUSTER_NAME: terraform-monitoring-on-eks-eks-cluster
+  ECR_REPO_NAME: terraform-monitoring-on-eks-ecr-repository
   TAG: latest
-  ACCOUNT_ID: 891062950211
+  ACCOUNT_ID: "891062950211"
 
 jobs:
   deploy:
@@ -25,17 +25,17 @@ jobs:
 
       - name: Login to ECR 
         run: |
-          aws ecr get-login-password --region $AWS_REGION | \
-          docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+          aws ecr get-login-password --region us-east-1 | \
+          docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
 
       - name: Build and Push docker image
         run: |
-          docker build -t $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$TAG ./app/frontend/
-          docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$TAG
+          docker build -t 891062950211.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPO_NAME:$TAG ./app/frontend/
+          docker push 891062950211.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPO_NAME:$TAG
 
       - name: Update kubeconfig
         run: |
-          aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
+          aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region us-east-1
 
       - name: Deploy to EKS 
         run: |
