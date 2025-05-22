@@ -19,6 +19,9 @@ spec:
         image: 891062950211.dkr.ecr.us-east-1.amazonaws.com/terraform-monitoring-on-eks-ecr-repository:latest-frontend
         ports:
         - containerPort: 80
+        envFrom:
+          - configMapRef:
+              name: frontend-config
         resources:
           limits:
             memory: "512Mi"

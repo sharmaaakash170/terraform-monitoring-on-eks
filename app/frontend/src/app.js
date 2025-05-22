@@ -8,7 +8,7 @@ function App() {
   const [newBook, setNewBook] = useState({ title: "", author: "", year: "" });
 
   const fetchBooks = async () => {
-    const res = await axios.get(`${API_URL}/books`);
+    const res = await axios.get('/api/books');
     setBooks(res.data);
   };
 
