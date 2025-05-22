@@ -30,7 +30,7 @@ jobs:
 
       - name: Build and Push docker image
         run: |
-          docker build -t $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$TAG ./app
+          docker build -t $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$TAG ./app/frontend/
           docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$TAG
 
       - name: Update kubeconfig
