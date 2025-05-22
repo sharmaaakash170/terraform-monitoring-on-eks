@@ -1,8 +1,6 @@
 module "ecr" {
   source       = "../../modules/ecr"
   project_name = var.project_name
-  
-  depends_on = [ module.dynamodb ]
 }
 
 module "vpc" {
@@ -13,14 +11,11 @@ module "vpc" {
   private_subnet_cidrs = var.private_subnet_cidrs
   azs                 = var.azs
 
-  depends_on = [ module.dynamodb ]
 }
 
 module "iam" {
   source       = "../../modules/iam"
   project_name = var.project_name
-
-  depends_on = [ module.dynamodb ]
 }
 
 module "eks" {
