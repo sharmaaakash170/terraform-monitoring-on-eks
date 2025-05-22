@@ -1,0 +1,11 @@
+aws_region          = "us-east-1"
+project_name        = "terraform-monitoring-on-eks"
+public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
+private_subnet_cidrs = ["10.0.3.0/24", "10.0.4.0/24"]
+vpc_cidr_block      = "10.0.0.0/16"
+azs                 = ["us-east-1a", "us-east-1b"]
+k8s_version         = "1.32"
+instance_types      = ["t2.medium"]
+desired_size        = 2
+max_size            = 3
+min_size            = 1
