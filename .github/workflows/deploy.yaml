@@ -27,19 +27,19 @@ jobs:
 
       - name: Login to ECR 
         run: |
-          aws ecr get-login-password --region us-east-1 | \
-          docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
+          aws ecr get-login-password --region $AWS_REGION | \
+          docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
 
       - name: Build and Push docker image
         run: |
-          docker build -t 891062950211.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPO_NAME:$TAG ./app/frontend/
-          docker push 891062950211.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPO_NAME:$TAG
+          docker build -t $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$TAG ./app/frontend/
+          docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$TAG
 
       - name: Update kubeconfig
         run: |
-          aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region us-east-1
+          aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
 
       - name: Deploy to EKS 
         run: |
-          kubectl apply -f k8s/deployment.yaml
-          kubectl apply -f k8s/service.yaml
+          kubectl apply -f ./app/frontend/deployment.yaml
+          kubectl apply -f ./app/frontend/service.yaml
