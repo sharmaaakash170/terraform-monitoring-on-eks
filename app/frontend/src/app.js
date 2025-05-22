@@ -14,7 +14,7 @@ function App() {
 
   const addBook = async () => {
     if (!newBook.title || !newBook.author || !newBook.year) return;
-    await axios.post(`${API_URL}/books`, {
+    await axios.post('/api/books', {  
       title: newBook.title,
       author: newBook.author,
       year: parseInt(newBook.year)
@@ -22,9 +22,9 @@ function App() {
     setNewBook({ title: "", author: "", year: "" });
     fetchBooks();
   };
-
+  
   const deleteBook = async (id) => {
-    await axios.delete(`${API_URL}/books/${id}`);
+    await axios.delete(`/api/books/${id}`); 
     fetchBooks();
   };
 
