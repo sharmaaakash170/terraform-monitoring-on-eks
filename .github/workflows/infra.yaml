@@ -49,7 +49,7 @@ jobs:
 
       - name: Terraform Plan
         working-directory: environments/dev
-        run: terraform plan 
+        run: terraform plan -lock=false
       
       - name: Terraform Apply 
         working-directory: environments/dev
