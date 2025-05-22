@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: sharmaaakash170/fastapi-backend:latest
+        image: 891062950211.dkr.ecr.us-east-1.amazonaws.com/terraform-monitoring-on-eks-ecr-repository:latest-backend
         resources:
           limits:
             memory: "512Mi"

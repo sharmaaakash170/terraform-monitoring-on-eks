@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: sharmaaakash170/react-frontend:latest
+        image: 891062950211.dkr.ecr.us-east-1.amazonaws.com/terraform-monitoring-on-eks-ecr-repository:latest-frontend
         ports:
         - containerPort: 80
         resources:
