@@ -56,10 +56,11 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_route_table" "public_rt" {
+  count = length(var.public_subnet_cidrs)
   vpc_id = aws_vpc.this.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw.id
+    gateway_id = aws_internet_gateway.igw[count.index].id
   }
 }
 
