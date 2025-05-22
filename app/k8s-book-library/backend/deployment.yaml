@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: sharmaaakash170/fastapi-backend:latest
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MONGO_HOST
+          value: "mongodb-service"
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_DB
+          value: "library"
+        - name: MONGO_USER
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-root-username
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-root-password
+          
+        

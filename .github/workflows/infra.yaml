@@ -51,6 +51,11 @@ jobs:
         working-directory: environments/dev
         run: terraform plan 
       
-      - name: Terraform Apply 
+      # - name: Terraform Apply 
+      #   working-directory: environments/dev
+      #   run: terraform apply --auto-approve
+
+      
+      - name: Terraform Destroy 
         working-directory: environments/dev
-        run: terraform apply --auto-approve
+        run: terraform destroy --auto-approve
